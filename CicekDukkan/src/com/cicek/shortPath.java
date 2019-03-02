@@ -15,48 +15,99 @@ public class shortPath {
 		ArrayList<String> green	 = new ArrayList<String>();
 		ArrayList<String> blue	 = new ArrayList<String>();
 		
-		// Gidebileceði þubeler için uzaklýklar  kýrmýzý, yeþil, mavi
+		// Þubeler için uzaklýklar  kýrmýzý, yeþil, mavi
 		int distance[][] =  new int[][] {
-			{10,20,30}, 
+			{10,20,50}, 
 			{15,20,25}, 
 			{100,90,80},
 			{75,50,12},
 			{500,100,200},
-			{40,10,35}
+			{40,10,35}, 
+			{3,2,1}
 		};
-		
+		 
 
 		// Hangi Sipariþ Nerenin ?
 		for(int i=0; i < distance.length; i++) { 
 			
 			int j = 0 ;
-			if( distance[i][j] < distance[i][j+1] && distance[i][j] < distance[i][j+1] ) {
+			// Temel Bölge = Kýrmýzý
+			if( distance[i][j] < distance[i][j+1] && distance[i][j] < distance[i][j+2] ) {
 				
-				System.out.println(" En Küçük Kýrmýzý \n");
+				System.out.println( i + ". Kayýt En Küçük Kýrmýzý ");
 				
-				red.add("Sipariþ ");
-		
+				if ( red.size() <= 30 ) {	
+					
+					red.add("Sipariþ ");
+					
+				} else if ( distance[i][j+1] <= distance[i][j+2] && green.size() < 50 ){
+					
+					green.add("Sipariþ ");
+					
+				} else if ( blue.size() <= 35 ) {
+					
+					blue.add("Sipariþ");
+					
+				} else {
+					
+					System.out.println("Kayýt Yapýlamadý! - Kýrmýzý Bölge");
+				}
+				
+			// Temel Bölge = Yeþil
 			} else if( distance[i][j+1] < distance[i][j] && distance[i][j+1] < distance[i][j+2]) {
 				
-				System.out.println(" En Küçük Yeþil \n");
-				green.add("Sipariþ ");
+				System.out.println( i + ". Kayýt En Küçük Yeþil");
 				
+				if ( green.size() <= 50) {
+					
+					green.add("Sipariþ ");
+					
+				} else if ( distance[i][j] <= distance[i][j+2] && red.size() <=30) {
+					
+					red.add("Sipariþ ");
+					
+				} else if (blue.size() <= 30 ) {
+					
+					blue.add("Sipariþ");
+					
+				} else {					
+					System.out.println("Kayýt Yapýlamadý - Yeþil Bölge");	
+				}
+							
+			// Temel Bölge = Mavi
 			} else if ( distance[i][j+2] < distance[i][j] && distance[i][j+2] < distance[i][j+1]) {
 				
-				System.out.println(" En Küçük Mavi \n");
-				blue.add("Sipariþ ");
+				System.out.println( i + ". Kayýt En Küçük Mavi ");
 				
+				// max 80 fakat minimum deðerleri saðlamasý icin 45'den fazla olamaz
+				if ( blue.size() <= 45 ) { 
+					
+					blue.add("Sipariþ ");
+				
+				} else if ( red.size() <= 20 ) {	
+					
+					red.add("Sipariþ ");
+					
+				} else if ( green.size() <= 35 ) {
+					
+					green.add("Sipariþ");
+					
+				} else {
+					System.out.println("Kayýt Yapýlamadý - Mavi Bölge");
+				}
+								
 			} else {
 				
-				System.out.println(" Hiçbirine yerleþemedi. Hata ! \n");
+				System.out.println(" Hiçbir þubeye aktarýlamadý. Genel Hata ! \n");
 			}
 			
 		}
 
+		
 		// Hangi Þubede Kaç Sipariþ Var?
-		System.out.println("Toplam Sipariþ (Kýrmýzý) : " + red.size());
-		System.out.println("Toplam Sipariþ (Yeþil)   : " + green.size());
-		System.out.println("Toplam Sipariþ (Mavi)	 : " + blue.size());
+		System.out.println("\nToplam Sipariþ (Kýrmýzý)	: " + red.size());
+		System.out.println("Toplam Sipariþ (Yeþil)   	: " + green.size());
+		System.out.println("Toplam Sipariþ (Mavi)	 	: " + blue.size());
 	
 		
 		
