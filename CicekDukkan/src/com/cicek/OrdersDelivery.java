@@ -31,8 +31,6 @@ public class OrdersDelivery {
 				latA = Company.redCompany.getLatitude();
 				lonA = Company.redCompany.getLongitude();
 				
-				//System.out.println("Red Lat-Lon : " + latA + " , " + lonA);
-				
 				tempCompany = new DistanceCompany();
 				
 				tempCompany.setRedDistance(DistanceCalculator.getDistance(latA, lonA, latB, lonB)); 
@@ -40,14 +38,10 @@ public class OrdersDelivery {
 				latA = Company.greenCompany.getLatitude();
 				lonA = Company.greenCompany.getLongitude();
 				
-				//System.out.println("Green Lat-Lon : " + latA + " , " + lonA);
-				
 				tempCompany.setGreenDistance(DistanceCalculator.getDistance(latA, lonA, latB, lonB));
 				
 				latA = Company.blueCompany.getLatitude();
 				lonA = Company.blueCompany.getLongitude();
-				
-				//System.out.println("Blue Lat-Lon : " + latA + " , " + lonA);
 				
 				tempCompany.setBlueDistance(DistanceCalculator.getDistance(latA, lonA, latB, lonB));
 				
@@ -83,5 +77,4 @@ public class OrdersDelivery {
 			System.out.println("{" + redTemp + " , " + greenTemp + " , " + blueTemp + "}");
 		}
 	}
-
 }
