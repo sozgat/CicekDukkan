@@ -17,44 +17,41 @@ public class OrdersDelivery {
 		// CTRL + SHIFT + O  => installs packages automatically.
 		
 		Company.init();//Initialize Company Coordinates
-		ArrayList<DistanceCompany> distanceArray = new ArrayList<DistanceCompany>();
+		
 		
 		try 
 		{
-			ArrayList<Order> listAddress = ExcelRead.getExcelData();
+			ArrayList<Order> orders = ExcelRead.getExcelData();
 			double latA, lonA, latB, lonB;
-			DistanceCompany tempCompany;
 			
-			for(int i=0; i < listAddress.size(); i++)
+			for(int i=0; i < orders.size(); i++)
 			{
-				latB = listAddress.get(i).getLatitude();
-				lonB = listAddress.get(i).getLongitude();
+				latB = orders.get(i).getLatitude();
+				lonB = orders.get(i).getLongitude();
 				
 				//System.out.println("Coordinates: " + latB + " , " + lonB);
 				
 				latA = Company.redCompany.getLatitude();
 				lonA = Company.redCompany.getLongitude();
 				
-				tempCompany = new DistanceCompany();
 				
-				tempCompany.setRedDistance(DistanceCalculator.getDistance(latA, lonA, latB, lonB)); 
+				orders.get(i).setDistanceToRed(DistanceCalculator.getDistance(latA, lonA, latB, lonB)); 
 				
 				latA = Company.greenCompany.getLatitude();
 				lonA = Company.greenCompany.getLongitude();
 				
-				tempCompany.setGreenDistance(DistanceCalculator.getDistance(latA, lonA, latB, lonB));
+				orders.get(i).setDistanceToGreen(DistanceCalculator.getDistance(latA, lonA, latB, lonB));
 				
 				latA = Company.blueCompany.getLatitude();
 				lonA = Company.blueCompany.getLongitude();
 				
-				tempCompany.setBlueDistance(DistanceCalculator.getDistance(latA, lonA, latB, lonB));
-				
-				distanceArray.add(tempCompany);
+				orders.get(i).setDistanceToBlue(DistanceCalculator.getDistance(latA, lonA, latB, lonB));
+
 			}
 			
 			//Cihan test icin bu fonksiyonla degerleri ekrana yazdiriyorum.
 			System.out.println("Distance in km:");
-			testDistance(distanceArray);
+			testDistance(orders);
 			
 		} 
 		catch (InvalidFormatException e) {
@@ -77,7 +74,7 @@ public class OrdersDelivery {
 	
 	
 	
-	public static void testDistance(ArrayList<DistanceCompany> distanceArray)
+	public static void testDistance(ArrayList<Order> Orders)
 	{
 		double redTemp, greenTemp, blueTemp;
 		ArrayList<Double> red	 = new ArrayList<Double>();
@@ -85,15 +82,15 @@ public class OrdersDelivery {
 		ArrayList<Double> blue	 = new ArrayList<Double>();
 		
 		
-		for(int i=0; i<distanceArray.size(); i++)
+		for(int i=0; i<Orders.size(); i++)
 		{
-			redTemp = distanceArray.get(i).getRedDistance();
-			greenTemp = distanceArray.get(i).getGreenDistance();
-			blueTemp = distanceArray.get(i).getBlueDistance();
+			redTemp = Orders.get(i).getDistanceToRed();
+			greenTemp = Orders.get(i).getDistanceToGreen();
+			blueTemp = Orders.get(i).getDistanceToBlue();
 
 
 			// Temel Bölge = Kýrmýzý
-			if( distanceArray.get(i).getRedDistance() < distanceArray.get(i).getGreenDistance() && distanceArray.get(i).getRedDistance() < distanceArray.get(i).getBlueDistance() ) {
+			if( Orders.get(i).getDistanceToRed() < Orders.get(i).getDistanceToGreen() && Orders.get(i).getDistanceToRed() < Orders.get(i).getDistanceToBlue() ) {
 				
 				System.out.println( i + ". Kayýt En Küçük Kýrmýzý ");
 				
@@ -101,7 +98,7 @@ public class OrdersDelivery {
 					
 					red.add(redTemp);
 					
-				} else if ( distanceArray.get(i).getGreenDistance() < distanceArray.get(i).getBlueDistance() && green.size() < 50 ){
+				} else if ( Orders.get(i).getDistanceToGreen() < Orders.get(i).getDistanceToBlue() && green.size() < 50 ){
 					
 					green.add(greenTemp);
 					
@@ -115,7 +112,7 @@ public class OrdersDelivery {
 				}
 				
 			// Temel Bölge = Yeþil
-			} else if( distanceArray.get(i).getGreenDistance() < distanceArray.get(i).getRedDistance() && distanceArray.get(i).getGreenDistance() < distanceArray.get(i).getBlueDistance()) {
+			} else if( Orders.get(i).getDistanceToGreen() < Orders.get(i).getDistanceToRed() && Orders.get(i).getDistanceToGreen() < Orders.get(i).getDistanceToBlue()) {
 				
 				System.out.println( i + ". Kayýt En Küçük Yeþil");
 				
@@ -123,7 +120,7 @@ public class OrdersDelivery {
 					
 					green.add(greenTemp);
 					
-				} else if ( distanceArray.get(i).getRedDistance() < distanceArray.get(i).getBlueDistance() && red.size() <30) {
+				} else if ( Orders.get(i).getDistanceToRed() < Orders.get(i).getDistanceToBlue() && red.size() <30) {
 					
 					red.add(redTemp);
 					
@@ -136,7 +133,7 @@ public class OrdersDelivery {
 				}
 							
 			// Temel Bölge = Mavi
-			} else if ( distanceArray.get(i).getBlueDistance() < distanceArray.get(i).getRedDistance() && distanceArray.get(i).getBlueDistance() < distanceArray.get(i).getGreenDistance()) {
+			} else if ( Orders.get(i).getDistanceToBlue() < Orders.get(i).getDistanceToRed() && Orders.get(i).getDistanceToBlue() < Orders.get(i).getDistanceToGreen()) {
 				
 				System.out.println( i + ". Kayýt En Küçük Mavi ");
 				
@@ -189,7 +186,8 @@ public class OrdersDelivery {
 		System.out.println("\n Kýrmýzýlar : \n");
 		int k = 0;
 		for(double counter: red ) {
-			System.out.println( k++ + ".  Kýrmýzý : " + counter);
+			
+			System.out.println( k++ + "idli Kýrmýzý : " + counter);
 		}
 		
 		System.out.println("\n Yeþiller : \n");
