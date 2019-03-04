@@ -64,17 +64,118 @@ public class OrdersDelivery {
  
 	}
 	
+	
+	
+	
+
+	
+	
+	
+	
+	
 	public static void testDistance(ArrayList<DistanceCompany> distanceArray)
 	{
 		double redTemp, greenTemp, blueTemp;
+		ArrayList<String> red	 = new ArrayList<String>();
+		ArrayList<String> green	 = new ArrayList<String>();
+		ArrayList<String> blue	 = new ArrayList<String>();
+		
 		
 		for(int i=0; i<distanceArray.size(); i++)
 		{
 			redTemp = distanceArray.get(i).getRedDistance();
 			greenTemp = distanceArray.get(i).getGreenDistance();
 			blueTemp = distanceArray.get(i).getBlueDistance();
+
+			int j = 0 ;
+			// Temel Bölge = Kýrmýzý
+			if( distanceArray.get(i).getRedDistance() < distanceArray.get(i).getGreenDistance() && distanceArray.get(i).getRedDistance() < distanceArray.get(i).getBlueDistance() ) {
+				
+				System.out.println( i + ". Kayýt En Küçük Kýrmýzý ");
+				
+				if ( red.size() < 30 ) {	
+					
+					red.add("Sipariþ ");
+					
+				} else if ( distanceArray.get(i).getGreenDistance() < distanceArray.get(i).getBlueDistance() && green.size() < 50 ){
+					
+					green.add("Sipariþ ");
+					
+				} else if ( blue.size() < 35 ) {
+					
+					blue.add("Sipariþ");
+					
+				} else {
+					
+					System.out.println("Kayýt Yapýlamadý! - Kýrmýzý Bölge");
+				}
+				
+			// Temel Bölge = Yeþil
+			} else if( distanceArray.get(i).getGreenDistance() < distanceArray.get(i).getRedDistance() && distanceArray.get(i).getGreenDistance() < distanceArray.get(i).getBlueDistance()) {
+				
+				System.out.println( i + ". Kayýt En Küçük Yeþil");
+				
+				if ( green.size() < 50) {
+					
+					green.add("Sipariþ ");
+					
+				} else if ( distanceArray.get(i).getRedDistance() < distanceArray.get(i).getBlueDistance() && red.size() <30) {
+					
+					red.add("Sipariþ ");
+					
+				} else if (blue.size() < 30 ) {
+					
+					blue.add("Sipariþ");
+					
+				} else {					
+					System.out.println("Kayýt Yapýlamadý - Yeþil Bölge");	
+				}
+							
+			// Temel Bölge = Mavi
+			} else if ( distanceArray.get(i).getBlueDistance() < distanceArray.get(i).getRedDistance() && distanceArray.get(i).getBlueDistance() < distanceArray.get(i).getGreenDistance()) {
+				
+				System.out.println( i + ". Kayýt En Küçük Mavi ");
+				
+				// max 80 fakat minimum deðerleri saðlamasý icin 45'den fazla olamaz
+				if ( blue.size() < 45 ) { 
+					
+					blue.add("Sipariþ ");
+				
+				} else if ( red.size() < 20 ) {	
+					
+					red.add("Sipariþ ");
+					
+				} else if ( green.size() < 35 ) {
+					
+					green.add("Sipariþ");
+					
+				} else {
+					System.out.println("Kayýt Yapýlamadý - Mavi Bölge");
+				}
+								
+			} else {
+				
+				System.out.println(" Hiçbir þubeye aktarýlamadý. Genel Hata ! \n");
+			}
+			
+
+			
 			
 			System.out.println("{" + redTemp + " , " + greenTemp + " , " + blueTemp + "}");
 		}
+		
+		
+		
+		
+		// Hangi Þubede Kaç Sipariþ Var?
+		System.out.println("\nToplam Sipariþ (Kýrmýzý)	: " + red.size());
+		System.out.println("Toplam Sipariþ (Yeþil)   	: " + green.size());
+		System.out.println("Toplam Sipariþ (Mavi)	 	: " + blue.size());
+	
+		
+	
+		
+		
+		
 	}
 }
