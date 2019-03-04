@@ -14,7 +14,7 @@ public class OrdersDelivery {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		// CTRL + SHIFT + O  => installs packages automatically.
+		// CTRL + SHIFT + O  => installs packages automatically.te
 		
 		Company.init();//Initialize Company Coordinates
 		
