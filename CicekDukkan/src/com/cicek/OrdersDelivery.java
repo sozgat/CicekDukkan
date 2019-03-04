@@ -84,87 +84,39 @@ public class OrdersDelivery {
 		
 		for(int i=0; i<Orders.size(); i++)
 		{
-			redTemp = Orders.get(i).getDistanceToRed();
-			greenTemp = Orders.get(i).getDistanceToGreen();
-			blueTemp = Orders.get(i).getDistanceToBlue();
+			redTemp 	= Orders.get(i).getDistanceToRed(); 
+			greenTemp 	= Orders.get(i).getDistanceToGreen(); 
+			blueTemp 	= Orders.get(i).getDistanceToBlue(); 
 
 
 			// Temel Bölge = Kýrmýzý
-			if( Orders.get(i).getDistanceToRed() < Orders.get(i).getDistanceToGreen() && Orders.get(i).getDistanceToRed() < Orders.get(i).getDistanceToBlue() ) {
+			if( redTemp < greenTemp && redTemp < blueTemp ) {
 				
 				System.out.println( i + ". Kayýt En Küçük Kýrmýzý ");
-				
-				if ( red.size() < 30 ) {	
-					
-					red.add(redTemp);
-					
-				} else if ( Orders.get(i).getDistanceToGreen() < Orders.get(i).getDistanceToBlue() && green.size() < 50 ){
-					
-					green.add(greenTemp);
-					
-				} else if ( blue.size() < 35 ) {
-					
-					blue.add(blueTemp);
-					
-				} else {
-					
-					System.out.println("Kayýt Yapýlamadý! - Kýrmýzý Bölge");
-				}
-				
+				red.add(redTemp);
+				Orders.get(i).setChoosenStoreId(1);
+
 			// Temel Bölge = Yeþil
-			} else if( Orders.get(i).getDistanceToGreen() < Orders.get(i).getDistanceToRed() && Orders.get(i).getDistanceToGreen() < Orders.get(i).getDistanceToBlue()) {
+			} else if( greenTemp < redTemp && greenTemp < blueTemp) {
 				
 				System.out.println( i + ". Kayýt En Küçük Yeþil");
-				
-				if ( green.size() < 50) {
-					
-					green.add(greenTemp);
-					
-				} else if ( Orders.get(i).getDistanceToRed() < Orders.get(i).getDistanceToBlue() && red.size() <30) {
-					
-					red.add(redTemp);
-					
-				} else if (blue.size() < 30 ) {
-					
-					blue.add(blueTemp);
-					
-				} else {					
-					System.out.println("Kayýt Yapýlamadý - Yeþil Bölge");	
-				}
+				green.add(greenTemp);
+				Orders.get(i).setChoosenStoreId(2);
+
 							
 			// Temel Bölge = Mavi
-			} else if ( Orders.get(i).getDistanceToBlue() < Orders.get(i).getDistanceToRed() && Orders.get(i).getDistanceToBlue() < Orders.get(i).getDistanceToGreen()) {
+			} else if ( blueTemp < redTemp && blueTemp < greenTemp) {
 				
 				System.out.println( i + ". Kayýt En Küçük Mavi ");
-				
-				// max 80 fakat minimum deðerleri saðlamasý icin 45'den fazla olamaz
-				if ( blue.size() < 45 ) { 
-					
-					blue.add(blueTemp);
-				
-				} else if ( red.size() < 20 ) {	
-					
-					red.add(redTemp);
-					
-				} else if ( green.size() < 35 ) {
-					
-					green.add(greenTemp);
-					
-				} else {
-					System.out.println("Kayýt Yapýlamadý - Mavi Bölge");
-				}
-								
-			} else {
-				
-				System.out.println(" Hiçbir þubeye aktarýlamadý. Genel Hata ! \n");
-			}
-			
+				blue.add(redTemp);
+				Orders.get(i).setChoosenStoreId(3);
 
-			
-			
+			}
 			System.out.println("{" + redTemp + " , " + greenTemp + " , " + blueTemp + "}");
 		}
 		
+		
+
 
 		
 		// Hangi Þubede Kaç Sipariþ Var?
@@ -173,34 +125,39 @@ public class OrdersDelivery {
 		System.out.println("Toplam Sipariþ (Mavi)	 	: " + blue.size());
 		System.out.println("\n");
 		
-		//  Sorting of arraylist using Collections.sort*/
-		 Collections.sort(red);
-		 Collections.sort(green);
-		 Collections.sort(blue);
+//  Sorting of arraylist using Collections.sort*/
+//		 Collections.sort(red);
+//		 Collections.sort(green);
+//		 Collections.sort(blue);
+		
+		System.out.println("OId- SId - Distance To Red -- Distance To Green -- Distance To Blue \n");
+		for( int i = 0; i < Orders.size(); i++  ) {
+			System.out.println( Orders.get(i).getOrderId() + " - " + Orders.get(i).getChoosenStoreId() + " => " + Orders.get(i).getDistanceToRed()  + " - " + Orders.get(i).getDistanceToGreen()  + " - " + Orders.get(i).getDistanceToBlue() );	
+		}
 		
 		
-//		for( int i = 0; i < green.size(); i++  ) {
-//			System.out.println( i + ".  Eleman : " + green.get(i));
-//		}
 		
-		System.out.println("\n Kýrmýzýlar : \n");
-		int k = 0;
+		// toplam uzaklýk hesabý 
+		double tk = 0, ty = 0, tm =0;
 		for(double counter: red ) {
-			
-			System.out.println( k++ + "idli Kýrmýzý : " + counter);
+		//	System.out.println( k++ + ".  Kýrmýzý : " + counter);
+			tk += counter;		
 		}
-		
-		System.out.println("\n Yeþiller : \n");
-		k = 0;
+
 		for(double counter: green ) {
-			System.out.println( k++ + ".  Yeþil : " + counter);
+		//	System.out.println( k++ + ".  Yeþil : " + counter);
+			ty += counter;
 		}
-		
-		System.out.println("\n Maviler : \n");
-		k = 0;
+
 		for(double counter: blue ) {
-			System.out.println( k++ + ".  Mavi : " + counter);
+		//	System.out.println( k++ + ".  Mavi : " + counter);
+			tm += counter;
 		}
+			
+		System.out.println("\n Toplam Maliyet (Kýrmýzý) : " + tk);
+		System.out.println("\n Toplam Maliyet (Yeþil) : " + ty);
+		System.out.println("\n Toplam Maliyet (Mavi) : " + tm );
+		
 		
 		
 		
