@@ -2,7 +2,18 @@ package com.model;
 
 public class Point
 {
+	private int storeId;
 	private double latitude;
+	private double longitude;
+	private int maxOrderCapacity;
+	private int minOrderCapacity;
+	
+	public int getStoreId() {
+		return storeId;
+	}
+	public void setStoreId(int storeId) {
+		this.storeId = storeId;
+	}
 	public double getLatitude() {
 		return latitude;
 	}
@@ -15,5 +26,17 @@ public class Point
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-	private double longitude;
+	public int getMaxOrderCapacity() {
+		return maxOrderCapacity;
+	}
+	public void setMaxOrderCapacity(int maxOrderCapacity) {
+		this.maxOrderCapacity = maxOrderCapacity;
+	}
+	public int getMinOrderCapacity() {
+		return minOrderCapacity;
+	}
+	public void setMinOrderCapacity(int minOrderCapacity) {
+		this.minOrderCapacity = minOrderCapacity;
+	}
+	
 }
