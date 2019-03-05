@@ -26,28 +26,28 @@ public class CheckAboveOfParallelLine {
 		
 		
 		if(otherStoreLatitude>= otherStoreLongitude*slope + yEkseniniKestigiNokta && otherStoreLatitude2>= otherStoreLongitude2*slope + yEkseniniKestigiNokta) {
-			System.out.println("Üçgen Noktalar üsttedir"); 
+			//System.out.println("Üçgen Noktalar üsttedir"); 
 			//yani burada üçgenin yönlerini bulduk. Tam tersi istikameti kontrol ettirmemiz gerekiyor. Alt taraflar kontrol edilicek bu eksen için
 			if (checkOrderLatitude<= checkOrderLongitude*slope + yEkseniniKestigiNokta || Double.isInfinite(yEkseniniKestigiNokta)) {
-				System.out.println("Kontrol edilen nokta alanýn içindedir.");
+				//System.out.println("Kontrol edilen nokta alanýn içindedir.");
 				return true;
 			}
 			else {
-				System.out.println("Kontrol edilen nokta alanýn dýþýndadýr.");
+				//System.out.println("Kontrol edilen nokta alanýn dýþýndadýr.");
 				return false;
 			}
 			
 		}
 		else {
-			System.out.println("Üçgen Noktalarý alttadýr");
+			//System.out.println("Üçgen Noktalarý alttadýr");
 			//yani burada üçgenin yönlerini bulduk. Tam tersi istikameti kontrol ettirmemiz gerekiyor. Alt taraflar kontrol edilicek bu eksen için
 			
 			if (checkOrderLatitude>= checkOrderLongitude*slope + yEkseniniKestigiNokta || Double.isInfinite(yEkseniniKestigiNokta)) {
-				System.out.println("Kontrol edilen nokta alanýn içindedir.");
+				//System.out.println("Kontrol edilen nokta alanýn içindedir.");
 				return true;
 			}
 			else {
-				System.out.println("Kontrol edilen nokta alanýn dýþýndadýr.");
+				//System.out.println("Kontrol edilen nokta alanýn dýþýndadýr.");
 				return false;
 			}
 		}
