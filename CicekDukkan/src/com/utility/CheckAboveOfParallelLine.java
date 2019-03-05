@@ -1,6 +1,6 @@
 package com.utility;
 
-//3 nokta elimizde olduðu için 3 gün oluþturduk. Ve her bir köþesini seçip diðer köþelerin oluþturduðu doðruya paralel çizdirdik.
+//3 nokta elimizde olduðu için üçgen oluþturduk. Ve her bir köþesini seçip diðer köþelerin oluþturduðu doðruya paralel çizdirdik.
 //Bu çizilen paralelin hangi bölgesine bakacaðýz? Bunu hesaplamak için üçgenin diðer köþelerinin paralel olan durumunu kontrol ediyoruz.
 //Eðer noktalar solda ise saðý, üstte ise altý kontrol etmemiz gerekiyor.Diðer durum tam tersi...
 //Burada amacýmýz seçilen noktanýn dýþýnda kalan yani diðer noktalara en uzaklarý bulmak.
