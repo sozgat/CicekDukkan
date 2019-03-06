@@ -11,6 +11,7 @@ import com.constants.Constants;
 import com.model.Counter;
 import com.model.Order;
 import com.model.Store;
+import com.services.WriteToJS;
 import com.utility.BoundaryUtil;
 import com.utility.CalculateUtil;
 import com.utility.ExcelRead;
@@ -68,7 +69,11 @@ public class OrdersDelivery {
 		CalculateUtil.totalCosts(orders);
 		
 		//testDistance(orders);
-
+		
+		//Ready to write js.
+		WriteToJS w = new WriteToJS();
+		w.write(orders, new Store[] {red, green, blue});
+		
 	}
 /*
 	public static void testDistance(ArrayList<Order> orders) {
