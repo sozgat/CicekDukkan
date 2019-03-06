@@ -2,12 +2,12 @@ package com.utility;
 
 //3 nokta elimizde olduðu için üçgen oluþturduk. Ve her bir köþesini seçip diðer köþelerin oluþturduðu doðruya paralel çizdirdik.
 //Bu çizilen paralelin hangi bölgesine bakacaðýz? Bunu hesaplamak için üçgenin diðer köþelerinin paralel olan durumunu kontrol ediyoruz.
-//Eðer noktalar solda ise saðý, üstte ise altý kontrol etmemiz gerekiyor.Diðer durum tam tersi...
+//Eðer noktalar solda ise saðý, üstte ise altý kontrol etmemiz gerekiyor.Diðer durum tam tersi... Matematik Eþitsizlikler Konusu
 //Burada amacýmýz seçilen noktanýn dýþýnda kalan yani diðer noktalara en uzaklarý bulmak.
 
 public class CheckAboveOfParallelLine {
 	
-	//Latitude = y ekseni , Longitude= x ekseni
+	//Latitude = y koordinatý , Longitude= x koordinatý
 	//slope= eðim
 	//storeLongitude,storeLatitude=Kontrol edilecek bayi deðiþkenleri, bu bayinin altýna veya üst bölgesine bakýlacak y>=mx+n eþitsizlik formülü
 	//checkOrderLongitude,checkOrderLatitude= Kontrol edilecek sipariþ. Sipariþler seçilen bayinin hangi bölgesinde kalýyor

@@ -1,108 +1,83 @@
 package com.cicek;
 
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
-import com.custom_compare.DistanceInBlue;
-import com.custom_compare.DistanceInGreen;
-import com.custom_compare.DistanceInRed;
-import com.model.*;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-
-import com.utility.CalculateSlope;
-import com.utility.CheckAboveOfParallelLine;
+import com.compare.DistanceInBlue;
+import com.compare.DistanceInGreen;
+import com.compare.DistanceInRed;
+import com.constants.Constants;
+import com.model.Counter;
+import com.model.Order;
+import com.model.Store;
+import com.utility.BoundaryUtil;
+import com.utility.CalculateUtil;
 import com.utility.ExcelRead;
+import com.utility.PrintUtil;
 
 public class OrdersDelivery {
-	
-	
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		// CTRL + SHIFT + O => installs packages automatically.te
+		Store red = new Store(Constants.RED_STORE_ID, Constants.RED_LATITUDE, Constants.RED_LONGITUDE,
+				Constants.RED_MAX_ORDER, Constants.RED_MIN_ORDER);
 
-		Store.init();// Initialize Company Coordinates
+		Store green = new Store(Constants.GREEN_STORE_ID, Constants.GREEN_LATITUDE, Constants.GREEN_LONGITUDE,
+				Constants.GREEN_MAX_ORDER, Constants.GREEN_MIN_ORDER);
 
-		try {
-			ArrayList<Order> orders = ExcelRead.getExcelData();
-			double latA, lonA, latB, lonB;
+		Store blue = new Store(Constants.BLUE_STORE_ID, Constants.BLUE_LATITUDE, Constants.BLUE_LONGITUDE,
+				Constants.BLUE_MAX_ORDER, Constants.BLUE_MIN_ORDER);
+		
+		ArrayList<Order> orders = ExcelRead.getExcelData();
 
-			for (int i = 0; i < orders.size(); i++) {
-				latB = orders.get(i).getLatitude();
-				lonB = orders.get(i).getLongitude();
+		for (int i = 0; i < orders.size(); i++) {
+			double latB = orders.get(i).getLatitude();
+			double lonB = orders.get(i).getLongitude();
+			HashMap<Integer, Double> distanceToStore = orders.get(i).getDistanceToStore();
+			
+			distanceToStore.put(Constants.RED_STORE_ID, DistanceCalculator.getDistance(red.getLatitude(), red.getLongitude(), latB, lonB));
 
-				// System.out.println("Coordinates: " + latB + " , " + lonB);
+			distanceToStore.put(Constants.GREEN_STORE_ID,DistanceCalculator.getDistance(green.getLatitude(), green.getLongitude(), latB, lonB));
 
-				latA = Store.redCompany.getLatitude();
-				lonA = Store.redCompany.getLongitude();
-
-				orders.get(i).setDistanceToRed(DistanceCalculator.getDistance(latA, lonA, latB, lonB));
-
-				latA = Store.greenCompany.getLatitude();
-				lonA = Store.greenCompany.getLongitude();
-
-				orders.get(i).setDistanceToGreen(DistanceCalculator.getDistance(latA, lonA, latB, lonB));
-
-				latA = Store.blueCompany.getLatitude();
-				lonA = Store.blueCompany.getLongitude();
-
-				orders.get(i).setDistanceToBlue(DistanceCalculator.getDistance(latA, lonA, latB, lonB));
-
-			}
-
-			// Cihan test icin bu fonksiyonla degerleri ekrana yazdiriyorum.
-			System.out.println("Distance in km:");
-			testDistance(orders);
-
-		} catch (InvalidFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			distanceToStore.put(Constants.BLUE_STORE_ID,DistanceCalculator.getDistance(blue.getLatitude(), blue.getLongitude(), latB, lonB));
 		}
+		
+//		PrintUtil.printOrders(orders);
+		BoundaryUtil.assignCloseOrderToStore(orders,red,green,blue);
+		PrintUtil.printOrders(orders);
+		CalculateUtil.optimizeOrders(orders, red, green, blue);
+		CalculateUtil.checkMaxCapacityAfterOptimizeOrders(orders, red, green, blue);
+		//Collections.sort(orders,new DistanceInGreen(1));
+		PrintUtil.printOrders(orders);
+		//CalculateUtil.totalCosts(orders);
+		
+		
+		
+		//int max =  Math.max(Math.max(count.get(Constants.BLUE_STORE_ID),count.get(Constants.RED_STORE_ID)),count.get(Constants.GREEN_STORE_ID));
+		do {
+			//PrintUtil.printOrders(orders);
+			BoundaryUtil.test(orders ,red, green, blue);
+			BoundaryUtil.assignCloseOrderToStoreCheck(orders,red,green,blue);
+			//PrintUtil.printOrders(orders);
+			
+		}while(BoundaryUtil.boundaryCheck(orders, red, green, blue) == 0 );
+		
+		//Collections.sort(orders,new DistanceInBlue());
+		PrintUtil.printOrders(orders);
+		CalculateUtil.totalCosts(orders);
+		
+		//testDistance(orders);
 
 	}
-
-	public static void testDistance(ArrayList<Order> Orders) {
+/*
+	public static void testDistance(ArrayList<Order> orders) {
 		double redTemp, greenTemp, blueTemp;
 		ArrayList<Double> red = new ArrayList<Double>();
 		ArrayList<Double> green = new ArrayList<Double>();
 		ArrayList<Double> blue = new ArrayList<Double>();
 
-		for (int i = 0; i < Orders.size(); i++) {
-			redTemp = Orders.get(i).getDistanceToRed();
-			greenTemp = Orders.get(i).getDistanceToGreen();
-			blueTemp = Orders.get(i).getDistanceToBlue();
-
-			// Temel Bölge = Kýrmýzý
-			if (redTemp < greenTemp && redTemp < blueTemp) {
-
-				System.out.println(i + ". Kayýt En Küçük Kýrmýzý ");
-				red.add(redTemp);
-				Orders.get(i).setChoosenStoreId(1);
-
-				// Temel Bölge = Yeþil
-			} else if (greenTemp < redTemp && greenTemp < blueTemp) {
-
-				System.out.println(i + ". Kayýt En Küçük Yeþil");
-				green.add(greenTemp);
-				Orders.get(i).setChoosenStoreId(2);
-
-				// Temel Bölge = Mavi
-			} else if (blueTemp < redTemp && blueTemp < greenTemp) {
-
-				System.out.println(i + ". Kayýt En Küçük Mavi ");
-				blue.add(blueTemp);
-				Orders.get(i).setChoosenStoreId(3);
-
-			}
-			System.out.println("{" + redTemp + " , " + greenTemp + " , " + blueTemp + "}");
-		}
+		
 
 		// Hangi Þubede Kaç Sipariþ Var?
 		System.out.println("\nToplam Sipariþ (Kýrmýzý)	: " + red.size());
@@ -110,66 +85,28 @@ public class OrdersDelivery {
 		System.out.println("Toplam Sipariþ (Mavi)	 	: " + blue.size());
 		System.out.println("\n");
 
-		// 0=Çiçek Bayisi Seçilmemiþ 1=Kýrmýzý Bayi 2=Yeþil Bayi 3=Mavi Bayi 
+		// 0=Çiçek Bayisi Seçilmemiþ 1=Kýrmýzý Bayi 2=Yeþil Bayi 3=Mavi Bayi
 		// Longitude= x ekseni , Latitude = y ekseni
-	
-		//Þuanlýk 
-		for (int i = 0; i < Orders.size(); i++) {
-			if (Orders.get(i).getChoosenStoreId()==Store.redCompany.getStoreId()) {
-				double slope=CalculateSlope.slope(Store.blueCompany.getLongitude(), Store.blueCompany.getLatitude(), Store.greenCompany.getLongitude(), Store.greenCompany.getLatitude());
-				boolean check=CheckAboveOfParallelLine.Calculate(slope, Store.redCompany.getLongitude(), Store.redCompany.getLatitude(),Store.blueCompany.getLongitude(), Store.blueCompany.getLatitude(), Store.greenCompany.getLongitude(), Store.greenCompany.getLatitude(),
-						Orders.get(i).getLongitude(), Orders.get(i).getLatitude());
-				if (check==false) {
-					Orders.get(i).setChoosenStoreId(0);
-					red.remove(Orders.get(i).getDistanceToRed());
-				}
 
-			}
-			if (Orders.get(i).getChoosenStoreId()==Store.greenCompany.getStoreId()) {
-				double slope=CalculateSlope.slope(Store.redCompany.getLongitude(), Store.redCompany.getLatitude(), Store.blueCompany.getLongitude(), Store.blueCompany.getLatitude());
-				boolean check=CheckAboveOfParallelLine.Calculate(slope, Store.greenCompany.getLongitude(), Store.greenCompany.getLatitude(), Store.redCompany.getLongitude(), Store.redCompany.getLatitude(), Store.blueCompany.getLongitude(),
-						Store.blueCompany.getLatitude(),
-						Orders.get(i).getLongitude(), Orders.get(i).getLatitude());
-				if (check==false) {
-					Orders.get(i).setChoosenStoreId(0);
-					green.remove(Orders.get(i).getDistanceToGreen());
-				}
-			}
-			if (Orders.get(i).getChoosenStoreId()==Store.blueCompany.getStoreId()) {
-				double slope=CalculateSlope.slope(Store.greenCompany.getLongitude(), Store.greenCompany.getLatitude(), Store.redCompany.getLongitude(), Store.redCompany.getLatitude());
-				boolean check=CheckAboveOfParallelLine.Calculate(slope, Store.blueCompany.getLongitude(), Store.blueCompany.getLatitude() , Store.redCompany.getLongitude(), Store.redCompany.getLatitude(),Store.greenCompany.getLongitude(), Store.greenCompany.getLatitude()
-						, Orders.get(i).getLongitude(), Orders.get(i).getLatitude());
-				if (check==false) {
-					Orders.get(i).setChoosenStoreId(0);
-					blue.remove(Orders.get(i).getDistanceToBlue());
-				}
-			}
-			
-			
-		}
+		// Þuanlýk
 
-		
-		checkMaxCapacityAfterCalculateParalelArea(red,green,blue,Orders);
+
+		checkMaxCapacityAfterCalculateParalelArea(red, green, blue, orders);
 
 		System.out.println("\nToplam Sipariþ (Kýrmýzý)	: " + red.size());
 		System.out.println("Toplam Sipariþ (Yeþil)   	: " + green.size());
 		System.out.println("Toplam Sipariþ (Mavi)	 	: " + blue.size());
 		System.out.println("\n");
 
-		//Collections.sort(Orders,new DistanceInBlue());
-		//Collections.sort(Orders,new DistanceInGreen());
-		
-//  Sorting of arraylist using Collections.sort*/
+		// Collections.sort(Orders,new DistanceInBlue());
+		// Collections.sort(Orders,new DistanceInGreen());
+
+//  Sorting of arraylist using Collections.sort
 //		 Collections.sort(red);
 //		 Collections.sort(green);
 //		 Collections.sort(blue);
 
-		System.out.println("OId- SId - Distance To Red -- Distance To Green -- Distance To Blue \n");
-		for (int i = 0; i < Orders.size(); i++) {
-			System.out.println(Orders.get(i).getOrderId() + " - " + Orders.get(i).getChoosenStoreId() + " => "
-					+ Orders.get(i).getDistanceToRed() + " - " + Orders.get(i).getDistanceToGreen() + " - "
-					+ Orders.get(i).getDistanceToBlue());
-		}
+		PrintUtil.printOrders(orders);
 
 		// toplam uzaklýk hesabý
 		double tk = 0, ty = 0, tm = 0;
@@ -193,50 +130,7 @@ public class OrdersDelivery {
 		System.out.println("\n Toplam Maliyet (Mavi) : " + tm);
 
 	}
+
 	
-	
-		
-	public static void checkMaxCapacityAfterCalculateParalelArea(ArrayList<Double> red,ArrayList<Double> green,ArrayList<Double> blue,ArrayList<Order> Orders)
-	
-	{ if (red.size()>Store.redCompany.getMaxOrderCapacity()) {
-			int count=0;
-			Collections.sort(Orders,new DistanceInRed());
-			for (int i = 0; i < Orders.size(); i++) {
-				if (Orders.get(i).getChoosenStoreId()==Store.redCompany.getStoreId()) {
-					count++;
-				}
-				if (Orders.get(i).getChoosenStoreId()==Store.redCompany.getStoreId() && count>Store.redCompany.getMaxOrderCapacity()) {
-					Orders.get(i).setChoosenStoreId(0);
-					red.remove(Orders.get(i).getDistanceToRed());
-				}
-			}
-		}
-		if(green.size()>Store.greenCompany.getMaxOrderCapacity()){
-			int count=0;
-			Collections.sort(Orders,new DistanceInGreen());
-			for (int i = 0; i < Orders.size(); i++) {
-				if (Orders.get(i).getChoosenStoreId()==Store.greenCompany.getStoreId()) {
-					count++;
-				}
-				if (Orders.get(i).getChoosenStoreId()==Store.greenCompany.getStoreId() && count>Store.greenCompany.getMaxOrderCapacity()) {
-					Orders.get(i).setChoosenStoreId(0);
-					green.remove(Orders.get(i).getDistanceToGreen());
-				}
-			}
-		}
-		if(blue.size()>Store.blueCompany.getMaxOrderCapacity()) {
-			int count=0;
-			Collections.sort(Orders,new DistanceInBlue());
-			for (int i = 0; i < Orders.size(); i++) {
-				if (Orders.get(i).getChoosenStoreId()==Store.blueCompany.getStoreId()) {
-					count++;
-				}
-				if (Orders.get(i).getChoosenStoreId()==Store.blueCompany.getStoreId() && count>Store.blueCompany.getMaxOrderCapacity()) {
-					Orders.get(i).setChoosenStoreId(0);
-					blue.remove(Orders.get(i).getDistanceToBlue());
-				}
-			}
-			
-		}
-	}
+	*/
 }

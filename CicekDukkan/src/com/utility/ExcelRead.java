@@ -19,7 +19,7 @@ public class ExcelRead {
 		getExcelData();
 	}
 
-    public static ArrayList<Order> getExcelData() throws IOException, InvalidFormatException {
+    public static ArrayList<Order> getExcelData() {
     	ArrayList<Order> orders = new ArrayList<Order>();
         // Creating a Workbook from an Excel file (.xls or .xlsx)
     	
