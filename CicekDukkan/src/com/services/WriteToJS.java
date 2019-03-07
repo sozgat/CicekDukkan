@@ -15,6 +15,11 @@ public class WriteToJS {
 			"#00ff00",//green
 			"#0000ff"//blue
 			};
+	private String[] storeNames = new String[] {
+			"Kýrmýzý",
+			"Mavi",
+			"Yeþil"
+			};
 	
 	public void write(ArrayList<Order> orders, Store[] storeData)
 	{
@@ -61,8 +66,8 @@ public class WriteToJS {
 			data +=
 				"	        .add(new ymaps.Placemark(["+storeData[j].getLatitude()+
 													","+storeData[j].getLongitude() +"], {\r\n" + 
-				"	            balloonContent: '"+"Store:"+(j+1)+"',\r\n" + 
-				"	            iconCaption: '"+"Store:"+(j+1)+"'\r\n" + 
+				"	            balloonContent: '"+storeNames[j]+" Bayi"+"',\r\n" + 
+				"	            iconCaption: '"+storeNames[j]+" Bayi"+"'\r\n" + 
 				"	        }, {\r\n" + 
 				"	        	preset: 'islands#glyphIcon',\r\n" +  
 				"				iconGlyph: 'hdd',"+

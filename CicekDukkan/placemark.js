@@ -97,8 +97,8 @@ ymaps.ready(init);
 	            iconColor: '#ff0000'
 	        }))
 	        .add(new ymaps.Placemark([41.04378,29.00996], {
-	            balloonContent: '143',
-	            iconCaption: '143'
+	            balloonContent: '133,143',
+	            iconCaption: '133,143'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#ff0000'
@@ -146,22 +146,22 @@ ymaps.ready(init);
 	            iconColor: '#ff0000'
 	        }))
 	        .add(new ymaps.Placemark([41.06078,29.01083], {
-	            balloonContent: '150',
-	            iconCaption: '150'
+	            balloonContent: '101,150',
+	            iconCaption: '101,150'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
 	        }))
 	        .add(new ymaps.Placemark([41.06078,29.01083], {
-	            balloonContent: '155',
-	            iconCaption: '155'
+	            balloonContent: '101,150,155',
+	            iconCaption: '101,150,155'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
 	        }))
 	        .add(new ymaps.Placemark([41.06078,29.01083], {
-	            balloonContent: '188',
-	            iconCaption: '188'
+	            balloonContent: '101,150,155,188',
+	            iconCaption: '101,150,155,188'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
@@ -195,15 +195,15 @@ ymaps.ready(init);
 	            iconColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.06307,29.01096], {
-	            balloonContent: '164',
-	            iconCaption: '164'
+	            balloonContent: '141,164',
+	            iconCaption: '141,164'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.06307,29.01096], {
-	            balloonContent: '165',
-	            iconCaption: '165'
+	            balloonContent: '141,164,165',
+	            iconCaption: '141,164,165'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
@@ -216,8 +216,8 @@ ymaps.ready(init);
 	            iconColor: '#ff0000'
 	        }))
 	        .add(new ymaps.Placemark([41.05128,29.0031], {
-	            balloonContent: '122',
-	            iconCaption: '122'
+	            balloonContent: '114,122',
+	            iconCaption: '114,122'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#ff0000'
@@ -251,15 +251,15 @@ ymaps.ready(init);
 	            iconColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.06416,29.00997], {
-	            balloonContent: '128',
-	            iconCaption: '128'
+	            balloonContent: '102,128',
+	            iconCaption: '102,128'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.06416,29.00997], {
-	            balloonContent: '134',
-	            iconCaption: '134'
+	            balloonContent: '102,128,134',
+	            iconCaption: '102,128,134'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
@@ -272,8 +272,8 @@ ymaps.ready(init);
 	            iconColor: '#ff0000'
 	        }))
 	        .add(new ymaps.Placemark([41.04184,29.00299], {
-	            balloonContent: '182',
-	            iconCaption: '182'
+	            balloonContent: '104,182',
+	            iconCaption: '104,182'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#ff0000'
@@ -307,8 +307,8 @@ ymaps.ready(init);
 	            iconColor: '#ff0000'
 	        }))
 	        .add(new ymaps.Placemark([41.0455,28.99978], {
-	            balloonContent: '123',
-	            iconCaption: '123'
+	            balloonContent: '121,123',
+	            iconCaption: '121,123'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#ff0000'
@@ -342,22 +342,22 @@ ymaps.ready(init);
 	            iconColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.06604,29.00737], {
-	            balloonContent: '177',
-	            iconCaption: '177'
+	            balloonContent: '131,177',
+	            iconCaption: '131,177'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
 	        }))
 	        .add(new ymaps.Placemark([41.06604,29.00737], {
-	            balloonContent: '192',
-	            iconCaption: '192'
+	            balloonContent: '131,177,192',
+	            iconCaption: '131,177,192'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
 	        }))
 	        .add(new ymaps.Placemark([41.06604,29.00737], {
-	            balloonContent: '196',
-	            iconCaption: '196'
+	            balloonContent: '131,177,192,196',
+	            iconCaption: '131,177,192,196'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
@@ -468,8 +468,8 @@ ymaps.ready(init);
 	            iconColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.07708,29.03119], {
-	            balloonContent: '147',
-	            iconCaption: '147'
+	            balloonContent: '125,147',
+	            iconCaption: '125,147'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
@@ -496,15 +496,15 @@ ymaps.ready(init);
 	            iconColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.07684,29.01543], {
-	            balloonContent: '167',
-	            iconCaption: '167'
+	            balloonContent: '160,167',
+	            iconCaption: '160,167'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.07684,29.01543], {
-	            balloonContent: '190',
-	            iconCaption: '190'
+	            balloonContent: '160,167,190',
+	            iconCaption: '160,167,190'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
@@ -531,8 +531,8 @@ ymaps.ready(init);
 	            iconColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.07826,29.01577], {
-	            balloonContent: '116',
-	            iconCaption: '116'
+	            balloonContent: '100,116',
+	            iconCaption: '100,116'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
@@ -713,22 +713,22 @@ ymaps.ready(init);
 	            iconColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.049792,29.003031], {
-	            balloonContent: 'Store:1',
-	            iconCaption: 'Store:1'
+	            balloonContent: 'Kýrmýzý Bayi',
+	            iconCaption: 'Kýrmýzý Bayi'
 	        }, {
 	        	preset: 'islands#glyphIcon',
 				iconGlyph: 'hdd',				iconColor: '#000000',	            iconGlyphColor: '#ff0000'
 	        }))
 	        .add(new ymaps.Placemark([41.06994,29.01925], {
-	            balloonContent: 'Store:2',
-	            iconCaption: 'Store:2'
+	            balloonContent: 'Mavi Bayi',
+	            iconCaption: 'Mavi Bayi'
 	        }, {
 	        	preset: 'islands#glyphIcon',
 				iconGlyph: 'hdd',				iconColor: '#000000',	            iconGlyphColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.049997,29.026108], {
-	            balloonContent: 'Store:3',
-	            iconCaption: 'Store:3'
+	            balloonContent: 'Yeþil Bayi',
+	            iconCaption: 'Yeþil Bayi'
 	        }, {
 	        	preset: 'islands#glyphIcon',
 				iconGlyph: 'hdd',				iconColor: '#000000',	            iconGlyphColor: '#0000ff'
