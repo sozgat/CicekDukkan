@@ -14,7 +14,7 @@ public class MarkerClustringForMap {
 			for (int j = i + 1; j < orders.size(); j++) {
 
 				if (orders.get(i).getLatitude() == orders.get(j).getLatitude()
-						&& orders.get(i).getLongitude() == orders.get(j).getLongitude() && orders.get(i).getChoosenStoreId() != orders.get(j).getChoosenStoreId()) {
+						&& orders.get(i).getLongitude() == orders.get(j).getLongitude()) {
 					ordersForMapping.get(j).setLatitude(orders.get(j).getLatitude() + 00.00002);
 					ordersForMapping.get(j).setLongitude(orders.get(j).getLongitude() + 00.00002);
 				}

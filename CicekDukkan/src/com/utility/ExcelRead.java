@@ -14,10 +14,6 @@ import java.util.Iterator;
 
 public class ExcelRead {
     public static final String FILE_NAME = "./orders.xlsx";
-    
-    public static void main(String[] args) throws InvalidFormatException, IOException {
-		getExcelData();
-	}
 
     public static ArrayList<Order> getExcelData() {
     	ArrayList<Order> orders = new ArrayList<Order>();
