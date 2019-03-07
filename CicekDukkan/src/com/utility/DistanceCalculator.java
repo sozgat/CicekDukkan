@@ -1,4 +1,4 @@
-package com.cicek;
+package com.utility;
 
 public class DistanceCalculator {
 

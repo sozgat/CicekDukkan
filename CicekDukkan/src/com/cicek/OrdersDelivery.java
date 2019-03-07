@@ -14,6 +14,7 @@ import com.model.Store;
 import com.services.WriteToJS;
 import com.utility.BoundaryUtil;
 import com.utility.CalculateUtil;
+import com.utility.DistanceCalculator;
 import com.utility.ExcelRead;
 import com.utility.PrintUtil;
 
@@ -54,8 +55,6 @@ public class OrdersDelivery {
 		//CalculateUtil.totalCosts(orders);
 		
 		
-		
-		//int max =  Math.max(Math.max(count.get(Constants.BLUE_STORE_ID),count.get(Constants.RED_STORE_ID)),count.get(Constants.GREEN_STORE_ID));
 		do {
 			//PrintUtil.printOrders(orders);
 			BoundaryUtil.test(orders ,red, green, blue);
@@ -65,6 +64,7 @@ public class OrdersDelivery {
 		}while(BoundaryUtil.boundaryCheck(orders, red, green, blue) == 0 );
 		
 		//Collections.sort(orders,new DistanceInBlue());
+		System.out.println("--------SONNNN-------");
 		PrintUtil.printOrders(orders);
 		CalculateUtil.totalCosts(orders);
 		
@@ -75,67 +75,5 @@ public class OrdersDelivery {
 		w.write(orders, new Store[] {red, green, blue});
 		
 	}
-/*
-	public static void testDistance(ArrayList<Order> orders) {
-		double redTemp, greenTemp, blueTemp;
-		ArrayList<Double> red = new ArrayList<Double>();
-		ArrayList<Double> green = new ArrayList<Double>();
-		ArrayList<Double> blue = new ArrayList<Double>();
 
-		
-
-		// Hangi Þubede Kaç Sipariþ Var?
-		System.out.println("\nToplam Sipariþ (Kýrmýzý)	: " + red.size());
-		System.out.println("Toplam Sipariþ (Yeþil)   	: " + green.size());
-		System.out.println("Toplam Sipariþ (Mavi)	 	: " + blue.size());
-		System.out.println("\n");
-
-		// 0=Çiçek Bayisi Seçilmemiþ 1=Kýrmýzý Bayi 2=Yeþil Bayi 3=Mavi Bayi
-		// Longitude= x ekseni , Latitude = y ekseni
-
-		// Þuanlýk
-
-
-		checkMaxCapacityAfterCalculateParalelArea(red, green, blue, orders);
-
-		System.out.println("\nToplam Sipariþ (Kýrmýzý)	: " + red.size());
-		System.out.println("Toplam Sipariþ (Yeþil)   	: " + green.size());
-		System.out.println("Toplam Sipariþ (Mavi)	 	: " + blue.size());
-		System.out.println("\n");
-
-		// Collections.sort(Orders,new DistanceInBlue());
-		// Collections.sort(Orders,new DistanceInGreen());
-
-//  Sorting of arraylist using Collections.sort
-//		 Collections.sort(red);
-//		 Collections.sort(green);
-//		 Collections.sort(blue);
-
-		PrintUtil.printOrders(orders);
-
-		// toplam uzaklýk hesabý
-		double tk = 0, ty = 0, tm = 0;
-		for (double counter : red) {
-			// System.out.println( k++ + ". Kýrmýzý : " + counter);
-			tk += counter;
-		}
-
-		for (double counter : green) {
-			// System.out.println( k++ + ". Yeþil : " + counter);
-			ty += counter;
-		}
-
-		for (double counter : blue) {
-			// System.out.println( k++ + ". Mavi : " + counter);
-			tm += counter;
-		}
-
-		System.out.println("\n Toplam Maliyet (Kýrmýzý) : " + tk);
-		System.out.println("\n Toplam Maliyet (Yeþil) : " + ty);
-		System.out.println("\n Toplam Maliyet (Mavi) : " + tm);
-
-	}
-
-	
-	*/
 }
