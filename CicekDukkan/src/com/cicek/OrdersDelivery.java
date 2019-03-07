@@ -18,6 +18,7 @@ import com.utility.BoundaryUtil;
 import com.utility.CalculateUtil;
 import com.utility.DistanceCalculator;
 import com.utility.ExcelRead;
+import com.utility.MarkerClustringForMap;
 import com.utility.PrintUtil;
 
 public class OrdersDelivery {
@@ -65,10 +66,12 @@ public class OrdersDelivery {
 
 		PrintUtil.printOrders(orders);
 		CalculateUtil.totalCosts(orders);
+		
+		
 
 		// Ready to write js.
 		WriteToJS w = new WriteToJS();
-		w.write(orders, new Store[] { red, green, blue });
+		w.write(MarkerClustringForMap.checkSameCoordinates(orders), new Store[] { red, green, blue });
 
 		try {
 			File htmlFile = new File("OrdersMap.html");

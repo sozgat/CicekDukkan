@@ -110,6 +110,7 @@ public class WriteToJS {
 			if(list.get(i).getLatitude() == m_order.getLatitude() &&
 			   list.get(i).getLongitude() == m_order.getLongitude())
 			{
+				
 				temp += (list.get(i).getOrderId()+",") ;
 			}
 		}
@@ -118,4 +119,6 @@ public class WriteToJS {
 		
 		return temp;
 	}
+	
+	
 }

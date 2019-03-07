@@ -145,23 +145,23 @@ ymaps.ready(init);
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#ff0000'
 	        }))
-	        .add(new ymaps.Placemark([41.06078,29.01083], {
-	            balloonContent: '101,150',
-	            iconCaption: '101,150'
+	        .add(new ymaps.Placemark([41.0608,29.010849999999998], {
+	            balloonContent: '150',
+	            iconCaption: '150'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
 	        }))
-	        .add(new ymaps.Placemark([41.06078,29.01083], {
-	            balloonContent: '101,150,155',
-	            iconCaption: '101,150,155'
+	        .add(new ymaps.Placemark([41.0608,29.010849999999998], {
+	            balloonContent: '150,155',
+	            iconCaption: '150,155'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
 	        }))
-	        .add(new ymaps.Placemark([41.06078,29.01083], {
-	            balloonContent: '101,150,155,188',
-	            iconCaption: '101,150,155,188'
+	        .add(new ymaps.Placemark([41.0608,29.010849999999998], {
+	            balloonContent: '150,155,188',
+	            iconCaption: '150,155,188'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
@@ -341,23 +341,23 @@ ymaps.ready(init);
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
 	        }))
-	        .add(new ymaps.Placemark([41.06604,29.00737], {
-	            balloonContent: '131,177',
-	            iconCaption: '131,177'
+	        .add(new ymaps.Placemark([41.06606,29.00739], {
+	            balloonContent: '177',
+	            iconCaption: '177'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
 	        }))
-	        .add(new ymaps.Placemark([41.06604,29.00737], {
-	            balloonContent: '131,177,192',
-	            iconCaption: '131,177,192'
+	        .add(new ymaps.Placemark([41.06606,29.00739], {
+	            balloonContent: '177,192',
+	            iconCaption: '177,192'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
 	        }))
-	        .add(new ymaps.Placemark([41.06604,29.00737], {
-	            balloonContent: '131,177,192,196',
-	            iconCaption: '131,177,192,196'
+	        .add(new ymaps.Placemark([41.06606,29.00739], {
+	            balloonContent: '177,192,196',
+	            iconCaption: '177,192,196'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
