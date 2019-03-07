@@ -713,22 +713,22 @@ ymaps.ready(init);
 	            iconColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.049792,29.003031], {
-	            balloonContent: 'Kýrmýzý Bayi',
-	            iconCaption: 'Kýrmýzý Bayi'
+	            balloonContent: 'Red Store',
+	            iconCaption: 'Red Store'
 	        }, {
 	        	preset: 'islands#glyphIcon',
 				iconGlyph: 'hdd',				iconColor: '#000000',	            iconGlyphColor: '#ff0000'
 	        }))
 	        .add(new ymaps.Placemark([41.06994,29.01925], {
-	            balloonContent: 'Mavi Bayi',
-	            iconCaption: 'Mavi Bayi'
+	            balloonContent: 'Green Store',
+	            iconCaption: 'Green Store'
 	        }, {
 	        	preset: 'islands#glyphIcon',
 				iconGlyph: 'hdd',				iconColor: '#000000',	            iconGlyphColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.049997,29.026108], {
-	            balloonContent: 'Yeþil Bayi',
-	            iconCaption: 'Yeþil Bayi'
+	            balloonContent: 'Blue Store',
+	            iconCaption: 'Blue Store'
 	        }, {
 	        	preset: 'islands#glyphIcon',
 				iconGlyph: 'hdd',				iconColor: '#000000',	            iconGlyphColor: '#0000ff'
