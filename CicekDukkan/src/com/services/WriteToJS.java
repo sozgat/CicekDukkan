@@ -18,8 +18,9 @@ public class WriteToJS {
 	
 	public void write(ArrayList<Order> orders, Store[] storeData)
 	{
-		
+		ArrayList<Order> tempList = new ArrayList<Order>();
 		String data = "";
+		String ordersId = "";
 		
 		data += "ymaps.ready(init);\r\n" + 
 				"\r\n" + 
@@ -38,11 +39,12 @@ public class WriteToJS {
 		
 		for(int i=0; i<orders.size(); i++)//Order points is adding...
 		{
+			ordersId = controlSameCoordinate(orders.get(i), tempList);
 			data +=
 				"	        .add(new ymaps.Placemark(["+orders.get(i).getLatitude()+
 													","+orders.get(i).getLongitude() +"], {\r\n" + 
-				"	            balloonContent: '"+orders.get(i).getOrderId()+"',\r\n" + 
-				"	            iconCaption: '"+orders.get(i).getOrderId()+"'\r\n" + 
+				"	            balloonContent: '"+ordersId+"',\r\n" + 
+				"	            iconCaption: '"+ordersId+"'\r\n" + 
 				"	        }, {\r\n" + 
 				"	        	preset: 'islands#blueCircleDotIconWithCaption',\r\n" + 
 				"	            iconColor: '"+
@@ -51,6 +53,7 @@ public class WriteToJS {
 				"	        }))\r\n";
 			
 				System.out.println((i+1)+". placemark was added.");
+				tempList.add(orders.get(i));
 		}
 		
 		for(int j=0; j<storeData.length; j++)//Store points is adding...
@@ -91,5 +94,23 @@ public class WriteToJS {
 		}
 		
 		System.out.println("Js kodlari basarili bir sekilde dosyaya yazildi.\n");	
+	}
+	
+	public String controlSameCoordinate(Order m_order, ArrayList<Order> list)
+	{
+		String temp = "";
+		
+		for(int i=0; i<list.size(); i++)
+		{
+			if(list.get(i).getLatitude() == m_order.getLatitude() &&
+			   list.get(i).getLongitude() == m_order.getLongitude())
+			{
+				temp += (list.get(i).getOrderId()+",") ;
+			}
+		}
+		
+		temp += m_order.getOrderId();
+		
+		return temp;
 	}
 }
