@@ -9,7 +9,6 @@ import com.compare.DistanceInBlue;
 import com.compare.DistanceInGreen;
 import com.compare.DistanceInRed;
 import com.constants.Constants;
-import com.model.Counter;
 import com.model.Order;
 import com.model.Store;
 
@@ -52,28 +51,23 @@ public class BoundaryUtil {
 				// Temel Bölge = Kýrmýzý
 				if (redTemp < greenTemp && redTemp < blueTemp) {
 
-					// System.out.println(i + ". Kayýt En Küçük Kýrmýzý ");
-
 					order.setChoosenStoreId(red.getStoreId());
 					red.incrementCurrentOrderCount();
 
 					// Temel Bölge = Yeþil
 				} else if (greenTemp < redTemp && greenTemp < blueTemp) {
 
-					// System.out.println(i + ". Kayýt En Küçük Yeþil");
 					order.setChoosenStoreId(green.getStoreId());
 					green.incrementCurrentOrderCount();
+
 					// Temel Bölge = Mavi
 				} else if (blueTemp < redTemp && blueTemp < greenTemp) {
 
-					// System.out.println(i + ". Kayýt En Küçük Mavi ");
 					order.setChoosenStoreId(blue.getStoreId());
 					blue.incrementCurrentOrderCount();
 				} else {
 					System.err.println("ERROR... assignCloseOrderToStore" + order);
 				}
-				// System.out.println("{" + redTemp + " , " + greenTemp + " , " + blueTemp +
-				// "}");
 			}
 		}
 
@@ -106,30 +100,25 @@ public class BoundaryUtil {
 						order.setChoosenStoreId(red.getStoreId());
 						red.incrementCurrentOrderCount();
 						return;
-					} 
-					else if (green.getCurrentOrderCount() == green.getMaxOrderCapacity() &&
-							redTemp < blueTemp) {
-						
-							order.setChoosenStoreId(red.getStoreId());
-							red.incrementCurrentOrderCount();
-							return;
-						
+					} else if (green.getCurrentOrderCount() == green.getMaxOrderCapacity() && redTemp < blueTemp) {
+
+						order.setChoosenStoreId(red.getStoreId());
+						red.incrementCurrentOrderCount();
+						return;
+
+					} else if (blue.getCurrentOrderCount() == blue.getMaxOrderCapacity() && redTemp < greenTemp) {
+
+						order.setChoosenStoreId(red.getStoreId());
+						red.incrementCurrentOrderCount();
+						return;
 
 					}
-					else if(blue.getCurrentOrderCount() == blue.getMaxOrderCapacity() && redTemp < greenTemp) {
-						
-							order.setChoosenStoreId(red.getStoreId());
-							red.incrementCurrentOrderCount();
-							return;
-						
-					}
-					
+
 					else if (green.getCurrentOrderCount() == green.getMaxOrderCapacity()
-							&& blue.getCurrentOrderCount() == blue.getMaxOrderCapacity() ) {
-							order.setChoosenStoreId(red.getStoreId());
-							red.incrementCurrentOrderCount();
-							return;
-						
+							&& blue.getCurrentOrderCount() == blue.getMaxOrderCapacity()) {
+						order.setChoosenStoreId(red.getStoreId());
+						red.incrementCurrentOrderCount();
+						return;
 
 					}
 
@@ -141,23 +130,20 @@ public class BoundaryUtil {
 						order.setChoosenStoreId(green.getStoreId());
 						green.incrementCurrentOrderCount();
 						return;
-					}
-					else if(red.getCurrentOrderCount() == red.getMaxOrderCapacity() && greenTemp < blueTemp) {
-						
-							order.setChoosenStoreId(green.getStoreId());
-							green.incrementCurrentOrderCount();
-							return;
-						
-					}
-					else if(blue.getCurrentOrderCount() == blue.getMaxOrderCapacity() && greenTemp < redTemp) {
-						
-							order.setChoosenStoreId(green.getStoreId());
-							green.incrementCurrentOrderCount();
-							return;
-						
-						
-					}
-					else if(red.getCurrentOrderCount() == red.getMaxOrderCapacity()&&blue.getCurrentOrderCount() == blue.getMaxOrderCapacity()) {
+					} else if (red.getCurrentOrderCount() == red.getMaxOrderCapacity() && greenTemp < blueTemp) {
+
+						order.setChoosenStoreId(green.getStoreId());
+						green.incrementCurrentOrderCount();
+						return;
+
+					} else if (blue.getCurrentOrderCount() == blue.getMaxOrderCapacity() && greenTemp < redTemp) {
+
+						order.setChoosenStoreId(green.getStoreId());
+						green.incrementCurrentOrderCount();
+						return;
+
+					} else if (red.getCurrentOrderCount() == red.getMaxOrderCapacity()
+							&& blue.getCurrentOrderCount() == blue.getMaxOrderCapacity()) {
 						order.setChoosenStoreId(green.getStoreId());
 						green.incrementCurrentOrderCount();
 						return;
@@ -172,24 +158,20 @@ public class BoundaryUtil {
 						order.setChoosenStoreId(blue.getStoreId());
 						blue.incrementCurrentOrderCount();
 						return;
-					}
-					else if(green.getCurrentOrderCount() == green.getMaxOrderCapacity()
-							&& blueTemp<redTemp) {
-						
-							order.setChoosenStoreId(blue.getStoreId());
-							blue.incrementCurrentOrderCount();
-							return;
-						
-					}
-					else if(red.getCurrentOrderCount() == red.getMaxOrderCapacity() && blueTemp<greenTemp) {
-						
-							order.setChoosenStoreId(blue.getStoreId());
-							blue.incrementCurrentOrderCount();
-							return;
-						
-					}
-					else if(green.getCurrentOrderCount() == green.getMaxOrderCapacity()&&
-							red.getCurrentOrderCount() == red.getMaxOrderCapacity()) {
+					} else if (green.getCurrentOrderCount() == green.getMaxOrderCapacity() && blueTemp < redTemp) {
+
+						order.setChoosenStoreId(blue.getStoreId());
+						blue.incrementCurrentOrderCount();
+						return;
+
+					} else if (red.getCurrentOrderCount() == red.getMaxOrderCapacity() && blueTemp < greenTemp) {
+
+						order.setChoosenStoreId(blue.getStoreId());
+						blue.incrementCurrentOrderCount();
+						return;
+
+					} else if (green.getCurrentOrderCount() == green.getMaxOrderCapacity()
+							&& red.getCurrentOrderCount() == red.getMaxOrderCapacity()) {
 						order.setChoosenStoreId(blue.getStoreId());
 						blue.incrementCurrentOrderCount();
 						return;
@@ -205,9 +187,7 @@ public class BoundaryUtil {
 	}
 
 	// Büyük ÜÇGENDE içeride kalanlan noktalarýn bayilere uzaklýðýnýn sayacý
-	public static void test(ArrayList<Order> orders, Store red, Store green, Store blue) {
-
-		// int tempGreen = 0, tempBlue = 0, tempRed = 0;
+	public static void CounterOfOrdersInBigTriangle(ArrayList<Order> orders, Store red, Store green, Store blue) {
 
 		HashMap<Integer, Integer> count = new HashMap<Integer, Integer>();
 		count.put(1, 0);
@@ -225,7 +205,7 @@ public class BoundaryUtil {
 				// Temel Bölge = Kýrmýzý
 				if (redTemp < greenTemp && redTemp < blueTemp) {
 					if (red.getCurrentOrderCount() < red.getMaxOrderCapacity()) {
-						// tempRed++;
+
 						count.put(red.getStoreId(), count.get(red.getStoreId()) + 1);
 					} else {
 						Store availableStore = getAvailableStore(order, green, blue);
@@ -234,31 +214,26 @@ public class BoundaryUtil {
 					// Temel Bölge = Yeþil
 				} else if (greenTemp < redTemp && greenTemp < blueTemp) {
 					if (green.getCurrentOrderCount() < green.getMaxOrderCapacity()) {
-						// tempRed++;
+
 						count.put(green.getStoreId(), count.get(green.getStoreId()) + 1);
 					} else {
 						Store availableStore = getAvailableStore(order, red, blue);
 						count.put(availableStore.getStoreId(), count.get(availableStore.getStoreId()) + 1);
 					}
 
-					// System.out.println(i + ". Kayýt En Küçük Yeþil");
-					// tempGreen++;
 					// Temel Bölge = Mavi
 				} else if (blueTemp < redTemp && blueTemp < greenTemp) {
 
 					if (blue.getCurrentOrderCount() < blue.getMaxOrderCapacity()) {
-						// tempRed++;
+
 						count.put(blue.getStoreId(), count.get(blue.getStoreId()) + 1);
 					} else {
 						Store availableStore = getAvailableStore(order, green, red);
 						count.put(availableStore.getStoreId(), count.get(availableStore.getStoreId()) + 1);
 					}
 
-					// System.out.println(i + ". Kayýt En Küçük Mavi ");
-//					count.put(Constants.BLUE_STORE_ID, count.get(Constants.BLUE_STORE_ID) + 1);
-					// tempBlue++;
 				} else {
-					System.err.println("ERROR..." + order);
+					System.err.println("ERROR... CounterOfOrdersInBigTriangle" + order);
 				}
 
 			}

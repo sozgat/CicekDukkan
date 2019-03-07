@@ -31,8 +31,8 @@ public class WriteToJS {
 				"\r\n" + 
 				"	function init() {\r\n" + 
 				"	    var myMap = new ymaps.Map(\"map\", {\r\n" + 
-				"	            center: [41.051883, 29.007060],\r\n" + 
-				"	            zoom: 13\r\n" + 
+				"	            center: [41.064028, 29.027323],\r\n" + 
+				"	            zoom: 14\r\n" + 
 				"	        }, {\r\n" + 
 				"	            searchControlProvider: 'yandex#search'\r\n" + 
 				"	        }),\r\n" + 

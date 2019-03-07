@@ -54,13 +54,12 @@ public class Order {
 		this.choosenStoreId = choosenStoreId;
 	}
 
-	
 	@Override
 	public String toString() {
 		return "Order [orderId=" + orderId + ", latitude=" + latitude + ", longitude=" + longitude + ", distanceToRed="
 				+ distanceToStore.get(Constants.RED_STORE_ID) + ", distanceToGreen="
-				+ distanceToStore.get(Constants.GREEN_STORE_ID) + ", distanceToBlue=" + distanceToStore.get(Constants.BLUE_STORE_ID)
-				+ ", choosenStoreId=" + choosenStoreId + "]";
+				+ distanceToStore.get(Constants.GREEN_STORE_ID) + ", distanceToBlue="
+				+ distanceToStore.get(Constants.BLUE_STORE_ID) + ", choosenStoreId=" + choosenStoreId + "]";
 	}
 
 }

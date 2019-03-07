@@ -1,5 +1,8 @@
 package com.cicek;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,7 +11,6 @@ import com.compare.DistanceInBlue;
 import com.compare.DistanceInGreen;
 import com.compare.DistanceInRed;
 import com.constants.Constants;
-import com.model.Counter;
 import com.model.Order;
 import com.model.Store;
 import com.services.WriteToJS;
@@ -30,50 +32,52 @@ public class OrdersDelivery {
 
 		Store blue = new Store(Constants.BLUE_STORE_ID, Constants.BLUE_LATITUDE, Constants.BLUE_LONGITUDE,
 				Constants.BLUE_MAX_ORDER, Constants.BLUE_MIN_ORDER);
-		
+
 		ArrayList<Order> orders = ExcelRead.getExcelData();
 
 		for (int i = 0; i < orders.size(); i++) {
 			double latB = orders.get(i).getLatitude();
 			double lonB = orders.get(i).getLongitude();
 			HashMap<Integer, Double> distanceToStore = orders.get(i).getDistanceToStore();
-			
-			distanceToStore.put(Constants.RED_STORE_ID, DistanceCalculator.getDistance(red.getLatitude(), red.getLongitude(), latB, lonB));
 
-			distanceToStore.put(Constants.GREEN_STORE_ID,DistanceCalculator.getDistance(green.getLatitude(), green.getLongitude(), latB, lonB));
+			distanceToStore.put(Constants.RED_STORE_ID,
+					DistanceCalculator.getDistance(red.getLatitude(), red.getLongitude(), latB, lonB));
 
-			distanceToStore.put(Constants.BLUE_STORE_ID,DistanceCalculator.getDistance(blue.getLatitude(), blue.getLongitude(), latB, lonB));
+			distanceToStore.put(Constants.GREEN_STORE_ID,
+					DistanceCalculator.getDistance(green.getLatitude(), green.getLongitude(), latB, lonB));
+
+			distanceToStore.put(Constants.BLUE_STORE_ID,
+					DistanceCalculator.getDistance(blue.getLatitude(), blue.getLongitude(), latB, lonB));
 		}
-		
-//		PrintUtil.printOrders(orders);
-		BoundaryUtil.assignCloseOrderToStore(orders,red,green,blue);
+
+		BoundaryUtil.assignCloseOrderToStore(orders, red, green, blue);
 		PrintUtil.printOrders(orders);
 		CalculateUtil.optimizeOrders(orders, red, green, blue);
 		CalculateUtil.checkMaxCapacityAfterOptimizeOrders(orders, red, green, blue);
-		//Collections.sort(orders,new DistanceInGreen(1));
 		PrintUtil.printOrders(orders);
-		//CalculateUtil.totalCosts(orders);
-		
-		
+
 		do {
-			//PrintUtil.printOrders(orders);
-			BoundaryUtil.test(orders ,red, green, blue);
-			BoundaryUtil.assignCloseOrderToStoreCheck(orders,red,green,blue);
-			//PrintUtil.printOrders(orders);
-			
-		}while(BoundaryUtil.boundaryCheck(orders, red, green, blue) == 0 );
-		
-		//Collections.sort(orders,new DistanceInBlue());
-		System.out.println("--------SONNNN-------");
+
+			BoundaryUtil.CounterOfOrdersInBigTriangle(orders, red, green, blue);
+			BoundaryUtil.assignCloseOrderToStoreCheck(orders, red, green, blue);
+
+		} while (BoundaryUtil.boundaryCheck(orders, red, green, blue) == 0);
+
 		PrintUtil.printOrders(orders);
 		CalculateUtil.totalCosts(orders);
-		
-		//testDistance(orders);
-		
-		//Ready to write js.
+
+		// Ready to write js.
 		WriteToJS w = new WriteToJS();
-		w.write(orders, new Store[] {red, green, blue});
-		
+		w.write(orders, new Store[] { red, green, blue });
+
+		try {
+			File htmlFile = new File("OrdersMap.html");
+			Desktop.getDesktop().browse(htmlFile.toURI());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 }

@@ -12,7 +12,7 @@ import com.model.Store;
 
 //Eðim hesaplamasý
 public class CalculateUtil {
-	
+
 	public static int countStore(ArrayList<Order> orders, int storeId) {
 		int counter = 0;
 		for (Order order : orders) {
@@ -22,8 +22,7 @@ public class CalculateUtil {
 		}
 		return counter;
 	}
-	
-	
+
 	// Latitude = y ekseni , Longitude= x ekseni
 	public static double slope(double x1, double y1, double x2, double y2) {
 		double slope = (y2 - y1) / (x2 - x1);
@@ -45,46 +44,53 @@ public class CalculateUtil {
 			}
 
 		}
-		
-		System.out.println("\nRED TOTAL COSTS: " + redCosts + "\nGREEN TOTAL COSTS: "+ greenCosts+"\nBLUE TOTAL COSTS: "+ blueCosts);
-		System.out.println("TOTAL COSTS: " + (redCosts+greenCosts+blueCosts) );
+
+		System.out.println("\nRED TOTAL COSTS: " + redCosts + "\nGREEN TOTAL COSTS: " + greenCosts
+				+ "\nBLUE TOTAL COSTS: " + blueCosts);
+		System.out.println("TOTAL COSTS: " + (redCosts + greenCosts + blueCosts));
 	}
 
 	public static void optimizeOrders(ArrayList<Order> orders, Store red, Store green, Store blue) {
 		for (int i = 0; i < orders.size(); i++) {
 
-			if (orders.get(i).getChoosenStoreId() == Constants.RED_STORE_ID) {
-				double slope = slope(Constants.BLUE_LONGITUDE, Constants.BLUE_LATITUDE,
-						Constants.GREEN_LONGITUDE, Constants.GREEN_LATITUDE);
-				boolean check = CheckAboveOfParallelLine.Calculate(slope, Constants.RED_LONGITUDE,
-						Constants.RED_LATITUDE, Constants.BLUE_LONGITUDE,
-						Constants.BLUE_LATITUDE, Constants.GREEN_LONGITUDE,
-						Constants.GREEN_LATITUDE, orders.get(i).getLongitude(), orders.get(i).getLatitude());
+			if (orders.get(i).getChoosenStoreId() == red.getStoreId()) {
+
+				double slope = slope(blue.getLongitude(), blue.getLatitude(), green.getLongitude(),
+						green.getLatitude());
+
+				boolean check = CheckAboveOfParallelLine.Calculate(slope, red.getLongitude(), red.getLatitude(),
+						blue.getLongitude(), blue.getLatitude(), green.getLongitude(), green.getLatitude(),
+						orders.get(i).getLongitude(), orders.get(i).getLatitude());
+
 				if (check == false) {
 					orders.get(i).setChoosenStoreId(Constants.NOT_CHOOSEN_STORE_ID);
 					red.decrementCurrentOrderCount();
 				}
 
 			}
-			if (orders.get(i).getChoosenStoreId() == Constants.GREEN_STORE_ID) {
-				double slope = slope(Constants.RED_LONGITUDE, Constants.RED_LATITUDE,
-						Constants.BLUE_LONGITUDE, Constants.BLUE_LATITUDE);
-				boolean check = CheckAboveOfParallelLine.Calculate(slope, Constants.GREEN_LONGITUDE,
-						Constants.GREEN_LATITUDE, Constants.RED_LONGITUDE,
-						Constants.RED_LATITUDE, Constants.BLUE_LONGITUDE,
-						Constants.BLUE_LATITUDE, orders.get(i).getLongitude(), orders.get(i).getLatitude());
+
+			if (orders.get(i).getChoosenStoreId() == green.getStoreId()) {
+
+				double slope = slope(red.getLongitude(), red.getLatitude(), blue.getLongitude(), blue.getLatitude());
+
+				boolean check = CheckAboveOfParallelLine.Calculate(slope, green.getLongitude(), green.getLatitude(),
+						red.getLongitude(), red.getLatitude(), blue.getLongitude(), blue.getLatitude(),
+						orders.get(i).getLongitude(), orders.get(i).getLatitude());
+
 				if (check == false) {
 					orders.get(i).setChoosenStoreId(Constants.NOT_CHOOSEN_STORE_ID);
 					green.decrementCurrentOrderCount();
 				}
 			}
-			if (orders.get(i).getChoosenStoreId() == Constants.BLUE_STORE_ID) {
-				double slope = slope(Constants.GREEN_LONGITUDE, Constants.GREEN_LATITUDE,
-						Constants.RED_LONGITUDE, Constants.RED_LATITUDE);
-				boolean check = CheckAboveOfParallelLine.Calculate(slope, Constants.BLUE_LONGITUDE,
-						Constants.BLUE_LATITUDE, Constants.RED_LONGITUDE,
-						Constants.RED_LATITUDE,Constants.GREEN_LONGITUDE,
-						Constants.GREEN_LATITUDE, orders.get(i).getLongitude(), orders.get(i).getLatitude());
+
+			if (orders.get(i).getChoosenStoreId() == blue.getStoreId()) {
+
+				double slope = slope(green.getLongitude(), green.getLatitude(), red.getLongitude(), red.getLatitude());
+
+				boolean check = CheckAboveOfParallelLine.Calculate(slope, blue.getLongitude(), blue.getLatitude(),
+						red.getLongitude(), red.getLatitude(), green.getLongitude(), green.getLatitude(),
+						orders.get(i).getLongitude(), orders.get(i).getLatitude());
+
 				if (check == false) {
 					orders.get(i).setChoosenStoreId(Constants.NOT_CHOOSEN_STORE_ID);
 					blue.decrementCurrentOrderCount();
@@ -94,7 +100,7 @@ public class CalculateUtil {
 		}
 	}
 
-	public static void checkMaxCapacityAfterOptimizeOrders(ArrayList<Order> orders,Store red, Store green, Store blue)
+	public static void checkMaxCapacityAfterOptimizeOrders(ArrayList<Order> orders, Store red, Store green, Store blue)
 
 	{
 		if (red.getCurrentOrderCount() > red.getMaxOrderCapacity()) {
@@ -108,12 +114,12 @@ public class CalculateUtil {
 				}
 			}
 		}
-		if (green.getCurrentOrderCount() >green.getMaxOrderCapacity()) {
+		if (green.getCurrentOrderCount() > green.getMaxOrderCapacity()) {
 			Collections.sort(orders, new DistanceInGreen(0));
 			for (int i = 0; i < orders.size(); i++) {
 
 				if (orders.get(i).getChoosenStoreId() == green.getStoreId()
-						&& green.getCurrentOrderCount() >green.getMaxOrderCapacity()) {
+						&& green.getCurrentOrderCount() > green.getMaxOrderCapacity()) {
 					orders.get(i).setChoosenStoreId(0);
 					green.decrementCurrentOrderCount();
 				}
