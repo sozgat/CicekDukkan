@@ -2,8 +2,8 @@ ymaps.ready(init);
 
 	function init() {
 	    var myMap = new ymaps.Map("map", {
-	            center: [41.051883, 29.007060],
-	            zoom: 13
+	            center: [41.064028, 29.027323],
+	            zoom: 14
 	        }, {
 	            searchControlProvider: 'yandex#search'
 	        }),
@@ -96,7 +96,7 @@ ymaps.ready(init);
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#ff0000'
 	        }))
-	        .add(new ymaps.Placemark([41.04378,29.00996], {
+	        .add(new ymaps.Placemark([41.0438,29.00998], {
 	            balloonContent: '143',
 	            iconCaption: '143'
 	        }, {
@@ -145,21 +145,21 @@ ymaps.ready(init);
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#ff0000'
 	        }))
-	        .add(new ymaps.Placemark([41.06078,29.01083], {
+	        .add(new ymaps.Placemark([41.0608,29.010849999999998], {
 	            balloonContent: '150',
 	            iconCaption: '150'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
 	        }))
-	        .add(new ymaps.Placemark([41.06078,29.01083], {
+	        .add(new ymaps.Placemark([41.06082,29.010869999999997], {
 	            balloonContent: '155',
 	            iconCaption: '155'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
 	        }))
-	        .add(new ymaps.Placemark([41.06078,29.01083], {
+	        .add(new ymaps.Placemark([41.06084,29.010889999999996], {
 	            balloonContent: '188',
 	            iconCaption: '188'
 	        }, {
@@ -194,14 +194,14 @@ ymaps.ready(init);
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
 	        }))
-	        .add(new ymaps.Placemark([41.06307,29.01096], {
+	        .add(new ymaps.Placemark([41.06309,29.01098], {
 	            balloonContent: '164',
 	            iconCaption: '164'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
 	        }))
-	        .add(new ymaps.Placemark([41.06307,29.01096], {
+	        .add(new ymaps.Placemark([41.06311,29.011], {
 	            balloonContent: '165',
 	            iconCaption: '165'
 	        }, {
@@ -215,7 +215,7 @@ ymaps.ready(init);
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#ff0000'
 	        }))
-	        .add(new ymaps.Placemark([41.05128,29.0031], {
+	        .add(new ymaps.Placemark([41.0513,29.00312], {
 	            balloonContent: '122',
 	            iconCaption: '122'
 	        }, {
@@ -250,14 +250,14 @@ ymaps.ready(init);
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
 	        }))
-	        .add(new ymaps.Placemark([41.06416,29.00997], {
+	        .add(new ymaps.Placemark([41.06418,29.00999], {
 	            balloonContent: '128',
 	            iconCaption: '128'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
 	        }))
-	        .add(new ymaps.Placemark([41.06416,29.00997], {
+	        .add(new ymaps.Placemark([41.0642,29.010009999999998], {
 	            balloonContent: '134',
 	            iconCaption: '134'
 	        }, {
@@ -271,7 +271,7 @@ ymaps.ready(init);
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#ff0000'
 	        }))
-	        .add(new ymaps.Placemark([41.04184,29.00299], {
+	        .add(new ymaps.Placemark([41.04186,29.00301], {
 	            balloonContent: '182',
 	            iconCaption: '182'
 	        }, {
@@ -306,7 +306,7 @@ ymaps.ready(init);
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#ff0000'
 	        }))
-	        .add(new ymaps.Placemark([41.0455,28.99978], {
+	        .add(new ymaps.Placemark([41.045519999999996,28.9998], {
 	            balloonContent: '123',
 	            iconCaption: '123'
 	        }, {
@@ -341,21 +341,21 @@ ymaps.ready(init);
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
 	        }))
-	        .add(new ymaps.Placemark([41.06604,29.00737], {
+	        .add(new ymaps.Placemark([41.06606,29.00739], {
 	            balloonContent: '177',
 	            iconCaption: '177'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
 	        }))
-	        .add(new ymaps.Placemark([41.06604,29.00737], {
+	        .add(new ymaps.Placemark([41.06608,29.00741], {
 	            balloonContent: '192',
 	            iconCaption: '192'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#0000ff'
 	        }))
-	        .add(new ymaps.Placemark([41.06604,29.00737], {
+	        .add(new ymaps.Placemark([41.0661,29.00743], {
 	            balloonContent: '196',
 	            iconCaption: '196'
 	        }, {
@@ -467,7 +467,7 @@ ymaps.ready(init);
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
 	        }))
-	        .add(new ymaps.Placemark([41.07708,29.03119], {
+	        .add(new ymaps.Placemark([41.0771,29.031209999999998], {
 	            balloonContent: '147',
 	            iconCaption: '147'
 	        }, {
@@ -495,14 +495,14 @@ ymaps.ready(init);
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
 	        }))
-	        .add(new ymaps.Placemark([41.07684,29.01543], {
+	        .add(new ymaps.Placemark([41.076859999999996,29.015449999999998], {
 	            balloonContent: '167',
 	            iconCaption: '167'
 	        }, {
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
 	        }))
-	        .add(new ymaps.Placemark([41.07684,29.01543], {
+	        .add(new ymaps.Placemark([41.076879999999996,29.015469999999997], {
 	            balloonContent: '190',
 	            iconCaption: '190'
 	        }, {
@@ -530,7 +530,7 @@ ymaps.ready(init);
 	        	preset: 'islands#blueCircleDotIconWithCaption',
 	            iconColor: '#00ff00'
 	        }))
-	        .add(new ymaps.Placemark([41.07826,29.01577], {
+	        .add(new ymaps.Placemark([41.07828,29.01579], {
 	            balloonContent: '116',
 	            iconCaption: '116'
 	        }, {
@@ -713,22 +713,22 @@ ymaps.ready(init);
 	            iconColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.049792,29.003031], {
-	            balloonContent: 'Store:1',
-	            iconCaption: 'Store:1'
+	            balloonContent: 'Red Store',
+	            iconCaption: 'Red Store'
 	        }, {
 	        	preset: 'islands#glyphIcon',
 				iconGlyph: 'hdd',				iconColor: '#000000',	            iconGlyphColor: '#ff0000'
 	        }))
 	        .add(new ymaps.Placemark([41.06994,29.01925], {
-	            balloonContent: 'Store:2',
-	            iconCaption: 'Store:2'
+	            balloonContent: 'Green Store',
+	            iconCaption: 'Green Store'
 	        }, {
 	        	preset: 'islands#glyphIcon',
 				iconGlyph: 'hdd',				iconColor: '#000000',	            iconGlyphColor: '#00ff00'
 	        }))
 	        .add(new ymaps.Placemark([41.049997,29.026108], {
-	            balloonContent: 'Store:3',
-	            iconCaption: 'Store:3'
+	            balloonContent: 'Blue Store',
+	            iconCaption: 'Blue Store'
 	        }, {
 	        	preset: 'islands#glyphIcon',
 				iconGlyph: 'hdd',				iconColor: '#000000',	            iconGlyphColor: '#0000ff'

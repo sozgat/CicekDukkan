@@ -17,18 +17,15 @@ public class CheckAboveOfParallelLine {
 			double otherStoreLongitude,double otherStoreLatitude,
 			double otherStoreLongitude2, double	otherStoreLatitude2,
 			double checkOrderLongitude, double checkOrderLatitude) {
+		
+		// Kontrol edilecek bayinin Y eksenini kestiði nokta
+		double pointCutYAxisOfStore= (slope*(-storeLongitude))+storeLatitude;
 
 		
-		double xEkseniniKestigiNokta= ((-storeLatitude)/slope)+storeLongitude;
-		
-		double yEkseniniKestigiNokta= (slope*(-storeLongitude))+storeLatitude;
-
-		
-		
-		if(otherStoreLatitude>= otherStoreLongitude*slope + yEkseniniKestigiNokta && otherStoreLatitude2>= otherStoreLongitude2*slope + yEkseniniKestigiNokta) {
+		if(otherStoreLatitude>= otherStoreLongitude*slope + pointCutYAxisOfStore && otherStoreLatitude2>= otherStoreLongitude2*slope + pointCutYAxisOfStore) {
 			//System.out.println("Üçgen Noktalar üsttedir"); 
 			//yani burada üçgenin yönlerini bulduk. Tam tersi istikameti kontrol ettirmemiz gerekiyor. Alt taraflar kontrol edilicek bu eksen için
-			if (checkOrderLatitude<= checkOrderLongitude*slope + yEkseniniKestigiNokta || Double.isInfinite(yEkseniniKestigiNokta)) {
+			if (checkOrderLatitude<= checkOrderLongitude*slope + pointCutYAxisOfStore || Double.isInfinite(pointCutYAxisOfStore)) {
 				//System.out.println("Kontrol edilen nokta alanýn içindedir.");
 				return true;
 			}
@@ -42,7 +39,7 @@ public class CheckAboveOfParallelLine {
 			//System.out.println("Üçgen Noktalarý alttadýr");
 			//yani burada üçgenin yönlerini bulduk. Tam tersi istikameti kontrol ettirmemiz gerekiyor. Alt taraflar kontrol edilicek bu eksen için
 			
-			if (checkOrderLatitude>= checkOrderLongitude*slope + yEkseniniKestigiNokta || Double.isInfinite(yEkseniniKestigiNokta)) {
+			if (checkOrderLatitude>= checkOrderLongitude*slope + pointCutYAxisOfStore || Double.isInfinite(pointCutYAxisOfStore)) {
 				//System.out.println("Kontrol edilen nokta alanýn içindedir.");
 				return true;
 			}

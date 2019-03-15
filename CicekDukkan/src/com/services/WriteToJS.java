@@ -15,18 +15,24 @@ public class WriteToJS {
 			"#00ff00",//green
 			"#0000ff"//blue
 			};
+	private String[] storeNames = new String[] {
+			"Red",
+			"Green",
+			"Blue"
+			};
 	
 	public void write(ArrayList<Order> orders, Store[] storeData)
 	{
-		
+		ArrayList<Order> tempList = new ArrayList<Order>();
 		String data = "";
+		String ordersId = "";
 		
 		data += "ymaps.ready(init);\r\n" + 
 				"\r\n" + 
 				"	function init() {\r\n" + 
 				"	    var myMap = new ymaps.Map(\"map\", {\r\n" + 
-				"	            center: [41.051883, 29.007060],\r\n" + 
-				"	            zoom: 13\r\n" + 
+				"	            center: [41.064028, 29.027323],\r\n" + 
+				"	            zoom: 14\r\n" + 
 				"	        }, {\r\n" + 
 				"	            searchControlProvider: 'yandex#search'\r\n" + 
 				"	        }),\r\n" + 
@@ -38,6 +44,7 @@ public class WriteToJS {
 		
 		for(int i=0; i<orders.size(); i++)//Order points is adding...
 		{
+			
 			data +=
 				"	        .add(new ymaps.Placemark(["+orders.get(i).getLatitude()+
 													","+orders.get(i).getLongitude() +"], {\r\n" + 
@@ -51,6 +58,7 @@ public class WriteToJS {
 				"	        }))\r\n";
 			
 				System.out.println((i+1)+". placemark was added.");
+				tempList.add(orders.get(i));
 		}
 		
 		for(int j=0; j<storeData.length; j++)//Store points is adding...
@@ -58,8 +66,8 @@ public class WriteToJS {
 			data +=
 				"	        .add(new ymaps.Placemark(["+storeData[j].getLatitude()+
 													","+storeData[j].getLongitude() +"], {\r\n" + 
-				"	            balloonContent: '"+"Store:"+(j+1)+"',\r\n" + 
-				"	            iconCaption: '"+"Store:"+(j+1)+"'\r\n" + 
+				"	            balloonContent: '"+storeNames[j]+" Store"+"',\r\n" + 
+				"	            iconCaption: '"+storeNames[j]+" Store"+"'\r\n" + 
 				"	        }, {\r\n" + 
 				"	        	preset: 'islands#glyphIcon',\r\n" +  
 				"				iconGlyph: 'hdd',"+
@@ -92,4 +100,7 @@ public class WriteToJS {
 		
 		System.out.println("Js kodlari basarili bir sekilde dosyaya yazildi.\n");	
 	}
+	
+	
+	
 }
